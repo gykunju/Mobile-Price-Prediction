@@ -20,8 +20,6 @@ estimators = [
 
 stack_model = StackingClassifier(estimators=estimators, final_estimator=LogisticRegression(penalty=None, max_iter=1000)).fit(X_train, y_train)
 
-
-
 ytrain_stack_pred = stack_model.predict(X_train)
 ytest_stack_pred = stack_model.predict(X_test)
 

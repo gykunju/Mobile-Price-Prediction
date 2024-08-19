@@ -105,8 +105,8 @@ st.write('- Data is evenly distributed on the target')
 
 ### CORRELATION HEATMAP - feature and target relations
 st.subheader('Data Relations')
-fig, ax = plt.subplots(figsize=(13,8))
-sns.heatmap(train_data.corr())
+fig, ax = plt.subplots(figsize=(20,10))
+sns.heatmap(train_data.corr(), annot=True)
 plt.title('Correlation Heatmap of the data')
 st.pyplot(fig)
 st.write('- For the target (Price range), The ram feature seems to have a strong relationship with it. Additionally, there are some recognisable relation with the px_width, px_height and battery power')
@@ -175,6 +175,7 @@ st.write('- Number of Cores and clock speed have no relation to each other')
 
 
 ### three_g and four_g
+st.subheader('3G and 4G Support')
 contingency_table = pd.crosstab(train_data['four_g'], train_data['three_g'])
 fig = plt.figure(figsize=(4,4))
 sns.heatmap(contingency_table, annot=True, fmt='d', cmap='YlGnBu')
