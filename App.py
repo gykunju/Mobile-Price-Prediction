@@ -25,7 +25,7 @@ st.write('''
 ## Data Set:
          ''')
 
-st.expander('Train Data').dataframe(train_data)
+st.expander('Data').dataframe(train_data)
 
 col1, col2, col3 = st.columns(3)
 col1.metric('Entries', train_data.count()[0])
@@ -222,6 +222,7 @@ st.write('- The price range seems to increase with increase in RAM ')
 
 ### PREDICTION MODEL
 st.subheader('Prediction Model')
+st.write('The Data was scaled using a standard scaler and split into 80% for the training and 20% for the testing')
 st.write(''' 
          ### Models Used were: 
          - Logistic Regression
@@ -229,7 +230,7 @@ st.write('''
          ''')
 
 st.write('The logistic Regressor and SVC proved to be the best performing prediction models')
-st.write('##### - Logistic Regressor')
+st.write('##### - Logistic Regressor (penalty=None, max_iter=1000)')
 
 col1, col2 = st.columns(2)
 col1.metric('Accuracy', 1.00, 'Train')
@@ -237,15 +238,18 @@ col2.metric('Accuracy', 0.97,'Test')
 
 
 
-st.write('##### - SVC')
+st.write('##### - SVC (degree=1, kernel=linear, C=0.7)')
 col1, col2 = st.columns(2)
 col1.metric('Accuracy', 0.97, 'Train')
 col2.metric('Accuracy', 0.96, 'Test')
 
 
 st.write('A stacking ensemble was used with the estimators as The logistic regressor and the SVC and the final estimator being the logistic regressor')
+st.write('The decision was based off the fact that the stack provided less misclassification compared to the other models')
 st.write('##### - Stack')
 
+
+st.subheader('Predict')
 col1, col2 = st.columns(2)
 col1.metric('Accuracy', 0.98, 'Train')
 col2.metric('Accuracy', 0.97, 'Test')
