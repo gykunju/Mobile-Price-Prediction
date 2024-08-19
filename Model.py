@@ -2,7 +2,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import StackingClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
 import pandas as pd
 
 
@@ -26,11 +25,3 @@ stack_model = StackingClassifier(estimators=estimators, final_estimator=Logistic
 ytrain_stack_pred = stack_model.predict(X_train)
 ytest_stack_pred = stack_model.predict(X_test)
 
-
-
-# st.write(f'Classification Report {classification_report(y_train, ytrain_stack_pred)}')
-# print(' ')
-# print('Test Report\n', classification_report(y_test, ytest_stack_pred))
-
-# print('Train Confusion \n', confusion_matrix(y_train, ytrain_stack_pred))
-# print('Test Confusion \n', confusion_matrix(y_test, ytest_stack_pred))

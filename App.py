@@ -8,11 +8,16 @@ from sklearn.ensemble import StackingClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
-from Model import stack_model, ytrain_stack_pred, ytest_stack_pred, y_train, y_test
+from Model import stack_model
 
 st.write('''
 # Mobile Price Prediction   
 ''')
+
+
+st.write('The Mobile Price range data is from kaggle...https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification?select=train.csv')
+st.write('The data gives a price range description for a mobile device based on certain mobile characteristics given')
+st.write('The task was to create a price range prediction model to inform individuals on the price range of their mobile device based on their device hardware and software characteristics')
 
 train_data = pd.read_csv('./train.csv')
 
@@ -94,9 +99,9 @@ st.write('- Data is evenly distributed on the target')
 
 ### Histplots
 
-fig = train_data.hist(bins=30, figsize=(20, 20))
-plt.suptitle('Histograms of Features')
-st.pyplot(fig)
+
+# plt.suptitle('Histograms of Features')
+# st.pyplot(train_data.hist(bins=30, figsize=(20, 20)))
 
 ### CORRELATION HEATMAP - feature and target relations
 st.subheader('Data Relations')
@@ -223,8 +228,26 @@ st.write('''
          ''')
 
 st.write('The logistic Regressor and SVC proved to be the best performing prediction models')
-st.write('A stacking ensemble was used with the estimators as The logistic regressor and the SVC and the final estimator being the logistic regressor')
+st.write('##### - Logistic Regressor')
 
+col1, col2 = st.columns(2)
+col1.metric('Accuracy', 1.00, 'Train')
+col2.metric('Accuracy', 0.97,'Test')
+
+
+
+st.write('##### - SVC')
+col1, col2 = st.columns(2)
+col1.metric('Accuracy', 0.97, 'Train')
+col2.metric('Accuracy', 0.96, 'Test')
+
+
+st.write('A stacking ensemble was used with the estimators as The logistic regressor and the SVC and the final estimator being the logistic regressor')
+st.write('##### - Stack')
+
+col1, col2 = st.columns(2)
+col1.metric('Accuracy', 0.98, 'Train')
+col2.metric('Accuracy', 0.97, 'Test')
 
 col1, col2, col3 = st.columns(3)
 battery = col1.number_input('Battery Power (mAh)', value=500)
