@@ -92,6 +92,11 @@ col1.pyplot(fig)
 st.write('- Data is evenly distributed on the target')
 
 
+### Histplots
+
+fig = train_data.hist(bins=30, figsize=(20, 20))
+plt.suptitle('Histograms of Features')
+st.pyplot(fig)
 
 ### CORRELATION HEATMAP - feature and target relations
 st.subheader('Data Relations')
@@ -128,6 +133,20 @@ st.write('- The ram is seen to increase with the price range insinuating that th
 
 
 
+### Pixel Height and Pixel Width
+st.subheader('Pixel Height and Pixel Width')
+fig = plt.figure(figsize=(10,10))
+scatter = plt.scatter(data=train_data, x='px_height', y='px_width', c='price_range', cmap='coolwarm')
+legend1 = plt.legend(*scatter.legend_elements(), title="Price Range")
+plt.gca().add_artist(legend1)
+plt.title('Relation between px_width and px_height')
+st.pyplot(fig)
+
+st.write('- There is a positive correlation between px_height and px_width since the px_width increases with pixel_height')
+st.write('- Insinuates that higher px_height tend to have higher px-width')
+
+
+
 ### Battery and Talk time
 st.subheader('Battery Power and Talk time Analysis')
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -143,10 +162,8 @@ st.write('- There are instances where a very highly priced phone has poor batter
 ### Cores and Clock Speed
 st.subheader('Number of Cores and Clock speed Analysis')
 fig, ax = plt.subplots(figsize=(6, 4))
-sns.boxplot(data=train_data, x='n_cores', y='clock_speed', color='teal')
-
-plt.title('Distribution of clock speed by n_cores')
-# plt.title('Number of cores vs. Clock Speed')
+sns.scatterplot(x='n_cores', y='clock_speed', hue='price_range', data=train_data, palette='coolwarm')
+plt.title('Number of cores vs. Clock Speed')
 st.pyplot(fig)
 
 st.write('- Number of Cores and clock speed have no relation to each other')
@@ -161,7 +178,7 @@ plt.ylabel('4G')
 plt.title('Relationship between 4G and 3G Support')
 st.pyplot(fig)
 
-
+st.write('- Insinuates that a device cannot lack 3G and 4G connectivity')
 
 ### 
 st.subheader('RAM, Battery Power and Price Range')
@@ -206,7 +223,7 @@ st.write('''
          ''')
 
 st.write('The logistic Regressor and SVC proved to be the best performing prediction models')
-st.write('A stacking ensemble was used with the estimators as The logistic regressor and the SVC and the final_estimator being the logistic regressor')
+st.write('A stacking ensemble was used with the estimators as The logistic regressor and the SVC and the final estimator being the logistic regressor')
 
 
 col1, col2, col3 = st.columns(3)
