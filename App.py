@@ -126,7 +126,7 @@ st.write('- ram has the widest range of values for the continuous features')
 
 
 ### RAM and Price Range
-st.header('Bivariate Analysis')
+
 
 st.subheader('Ram and Price range Analysis')
 fig, ax = plt.subplots(figsize=(6, 4))
